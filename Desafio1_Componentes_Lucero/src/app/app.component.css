@@ -1,0 +1,25 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+}
+.navbar{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    background-color: blueviolet;
+}
+.lateral{
+    grid-column-start: 1;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    background-color: orange;
+}
+.content{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    background-color: green;
+}
