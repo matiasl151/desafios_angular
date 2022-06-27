@@ -1,0 +1,34 @@
+<div class="container">
+  <div>
+    <h1>Listado de alumnos</h1>
+    <li *ngFor="let alumno of alumnos">
+      <button type="button" (click)="onSelect(alumno)">
+        <span *ngIf="alumno.promedio > 7" class="aprobado">{{
+          alumno.nombre | uppercase
+        }}</span>
+        <span
+          *ngIf="alumno.promedio <= 7 && alumno.promedio >= 4"
+          class="desaprobado"
+          >{{ alumno.nombre | lowercase }}</span
+        >
+        <span *ngIf="alumno.promedio < 4" class="aplazado">{{
+          alumno.nombre | lowercase
+        }}</span>
+      </button>
+    </li>
+  </div>
+  <div *ngIf="alumnoSelected">
+    <h2>{{ alumnoSelected.nombre | uppercase }} detalles</h2>
+    <span>Apellido: {{ alumnoSelected.apellido }}</span>
+    <span>Edad: {{ alumnoSelected.edad }}</span>
+    <span>Promedio: {{ alumnoSelected.promedio }}</span>
+  </div>
+  <div>
+    <h3>Referencias</h3>
+    <ul>
+      <span class="aprobado">Aprobado</span>
+      <span class="desaprobado">Desaprobado</span>
+      <span class="aplazado">Aplazado</span>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+div {
+    margin-bottom: 10px;
+}
+
+div.container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: black;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0.5em 0 0 0;
+}
+
+h2 {
+    color: black;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0.5em 0 0 0;
+}
+
+h3 {
+    color: black;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0.5em 0 0 0;
+}
+
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 1em;
+}
+
+span {
+    font-size: 1.5em;
+    margin: 10px;
+}
+
+span.aprobado {
+    color: green;
+    text-decoration-line: underline;
+}
+    
+span.desaprobado {
+    color: red;
+    text-decoration-line: none;
+}
+
+span.aplazado {
+    color: red;
+    text-decoration-line: line-through;
+}
