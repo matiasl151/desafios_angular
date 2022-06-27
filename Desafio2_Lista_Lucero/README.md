@@ -1,27 +1,75 @@
-# Desafio2ListaLucero
+# Desafio2 Lista Lucero
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.1.
+Consigna: Entregar un proyecto que dado un array de alumnos los muestre en forma de lista y aplique diferentes estilos según algunas condiciones 🙌.
 
-## Development server
+Aspectos a incluir en el entregable:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Se espera la entrega de un proyecto configurado y funcional utilizando creación de componentes.
+- Recuerda hacer uso correcto de directivas (estructurales y de atributo) y pipes.
 
-## Code scaffolding
+## Lista de alumnos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### alumno.interface.ts
 
-## Build
+Interface alumno
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+export interface alumno {
+  nombre: string;
+  apellido: string;
+  edad: number;
+  curso: string;
+  nota: number;
+}
+```
 
-## Running unit tests
+### mock-Alumnos.ts
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Lista de alumnos para el desafio
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+export const ALUMNOS: alumno[] = [
+  {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    edad: 20,
+    curso: 'Angular',
+    nota: 5
+  },
+  {
+    nombre: 'Pedro',
+    apellido: 'Gonzalez',
+    edad: 25,
+    curso: 'Angular',
+    nota: 4
+  },
+  {
+    nombre: 'Maria',
+    apellido: 'Gonzalez',
+    edad: 25,
+    curso: 'Angular',
+    nota: 3
+  },
+  {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    edad: 20,
+    curso: 'Angular',
+    nota: 5
+  },
+  {
+    nombre: 'Pedro',
+    apellido: 'Gonzalez',
+    edad: 25,
+    curso: 'Angular',
+    nota: 4
+  },
+  {
+    nombre: 'Maria',
+    apellido: 'Gonzalez',
+    edad: 25,
+    curso: 'Angular',
+    nota: 3
+  }
+];
+```
