@@ -1,0 +1,55 @@
+<div class="form-floating mb-3">
+  <h2>Agregar Usuario</h2>
+  <form [formGroup]="formulario" (ngSubmit)="agregarUsuario()">
+    <label>Name:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="floatingInput"
+      placeholder="name"
+      formControlName="name"
+    />
+    <div
+      class="text-danger ml-3 justify-content-end"
+      *ngIf="this.formulario.get('name')?.errors?.['minlength']"
+    >
+      Minimo 4 caracteres.
+    </div>
+    <div
+      class="text-danger ml-3 justify-content-end"
+      *ngIf="this.formulario.get('name')?.errors?.['required']"
+    >
+      Campo requerido.
+    </div>
+    <label>Email:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="floatingInput"
+      placeholder="name@example.com"
+      formControlName="email"
+    />
+    <div
+      class="text-danger ml-3 justify-content-end"
+      *ngIf="this.formulario.get('name')?.errors?.['required']"
+    >
+      Campo requerido.
+    </div>
+
+    <label>Age:</label>
+    <input
+      type="number"
+      class="form-control"
+      id="floatingInput"
+      placeholder="age"
+      formControlName="age"
+    />
+    <div
+      class="text-danger ml-3 justify-content-end"
+      *ngIf="this.formulario.get('name')?.errors?.['required']"
+    >
+      Campo requerido.
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+</div>

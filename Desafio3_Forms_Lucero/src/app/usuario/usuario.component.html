@@ -1,0 +1,25 @@
+<div class="list-container">
+  <h2>Lista de Usuarios</h2>
+  <div *ngFor="let usuario of usuarios">
+    <div
+      *ngIf="usuario.age >= filtroEdadMin && usuario.age <= filtroEdadMax"
+      (click)="clickUsuario(usuario)"
+    >
+      <span>
+        Nombre: {{ usuario.name | uppercase }} - Email: {{ usuario.email }}
+      </span>
+    </div>
+  </div>
+  <h3>Filtros</h3>
+  <div class="btn-group" role="group">
+    <button class="btn btn-primary" (click)="setFiltroEdad(0, 100)">
+      Todos
+    </button>
+    <button class="btn btn-primary" (click)="setFiltroEdad(18, 100)">
+      Mayores
+    </button>
+    <button class="btn btn-primary" (click)="setFiltroEdad(14, 17)">
+      Menores
+    </button>
+  </div>
+</div>

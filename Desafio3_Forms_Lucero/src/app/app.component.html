@@ -1,0 +1,7 @@
+<div class="main-container">
+  <app-form-usuarios (addUsuario)="newUsuario($event)"></app-form-usuarios>
+  <app-usuario
+    [usuarios]="usuarios"
+    (onClickUsuario)="dataAccept($event)"
+  ></app-usuario>
+</div>
