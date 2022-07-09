@@ -7,6 +7,12 @@ import { ToolbarComponent } from './components/layout/toolbar/toolbar.component'
 import { ListaAlumnosComponent } from './components/lista-alumnos/lista-alumnos.component';
 import { MainComponent } from './components/layout/main/main.component';
 
+// Angular Material
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +22,10 @@ import { MainComponent } from './components/layout/main/main.component';
     MainComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
