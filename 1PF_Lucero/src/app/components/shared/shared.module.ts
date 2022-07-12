@@ -9,7 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import  {MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [],
@@ -21,7 +22,8 @@ import  {MatFormFieldModule } from '@angular/material/form-field';
     MatSidenavModule,
     MatButtonModule,
     MatTableModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -30,7 +32,8 @@ import  {MatFormFieldModule } from '@angular/material/form-field';
     MatSidenavModule,
     MatButtonModule,
     MatTableModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class SharedModule { }

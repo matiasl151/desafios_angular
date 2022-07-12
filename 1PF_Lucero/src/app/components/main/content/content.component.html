@@ -3,21 +3,23 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span>AppAlumnos</span>
-
 </mat-toolbar>
 
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
+    <button (click)="setOption('Add')" mat-raised-button>
+      Agregar Alumno
+    </button>
+    <button (click)="setOption('Edit')" mat-raised-button>
+      Editar Alumno
+    </button>
+    <button (click)="setOption('Delete')" mat-raised-button>
+      Eliminar Alumno
     </button>
   </mat-drawer>
 
   <div class="sidenav-content">
     <app-alumnos></app-alumnos>
-    <app-form-alumnos></app-form-alumnos>
+    <app-form-alumnos [option]="currentOption"></app-form-alumnos>
   </div>
-
 </mat-drawer-container>

@@ -1,40 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Alumno } from 'src/app/interfaces/alumno.interface';
 
+import { AlumnoService } from 'src/app/services/alumno.service';
+
 @Component({
   selector: 'app-alumnos',
   templateUrl: './alumnos.component.html',
   styleUrls: ['./alumnos.component.scss']
 })
 export class AlumnosComponent implements OnInit {
-  alumnos: Alumno[] = [
-    {
-      id: 1,
-      name: 'Juan',
-      lastName: 'Perez',
-      age: 20,
-      email: ''
-    }
-  ];
-  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'edad', 'acciones'];
-  dataSource = this.alumnos;
 
-  constructor() { }
+  alumnos: Alumno[] = []
+
+  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'edad', 'email'];
+
+  constructor( private alumnoService: AlumnoService ) { }
 
   ngOnInit(): void {
+    this.getAlumnos();
+
   }
 
-  addAlumno(alumno: Alumno) {
-    this.alumnos.push(alumno);
+  getAlumnos() {
+    this.alumnoService.getAlumnos().subscribe(
+      (data: Alumno[]) => {
+        this.alumnos = data;
+      }
+    )
+    console.log(this.alumnos);
   }
-
-  deleteAlumno(alumno: Alumno) {
-    this.alumnos = this.alumnos.filter(a => a.id !== alumno.id);
-  }
-
-  editAlumno(alumno: Alumno) {
-    this.alumnos = this.alumnos.map(a => a.id === alumno.id ? alumno : a);
-  }
-
-
 }
