@@ -44,15 +44,15 @@ export class FormAlumnosComponent implements OnInit {
   }
 
   addAlumno() {
-    this.formularioAdd.setValue({
-      id: this.alumnoService.alumnos.length + 1,
+    const alumno: Alumno = {
+      id: this.alumnoService.listAlumnos.length + 1,
       name: this.formularioAdd.value.name,
       lastName: this.formularioAdd.value.lastName,
       age: this.formularioAdd.value.age,
       email: this.formularioAdd.value.email
-    })
-    const alumno = this.formularioAdd.value as Alumno;
+    }
     this.alumnoService.addAlumno(alumno);
+    console.log(this.alumnoService.getAlumnos());
     this.formularioAdd.reset();
   }
 

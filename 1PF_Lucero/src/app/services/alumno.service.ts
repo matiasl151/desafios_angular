@@ -1,13 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
 import {Alumno} from '../interfaces/alumno.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlumnoService {
-
-  public alumnos: Alumno[] = [
+  listAlumnos: Alumno[] = [
     {
       id: 1,
       name: 'Juan',
@@ -25,16 +23,16 @@ export class AlumnoService {
   ];
 
   addAlumno(alumno: Alumno) {
-    this.alumnos.push(alumno);
+    this.listAlumnos.push(alumno);
   }
 
-  getAlumnos(): Observable<Alumno[]> {
-    return of(this.alumnos);
+  getAlumnos(): Alumno[] {
+    return this.listAlumnos;
   }
 
   getAlumno(id: number): Alumno {
     let alumnoEncontrado: Alumno = {} as Alumno;
-    this.alumnos.forEach(alumno => {
+    this.listAlumnos.forEach(alumno => {
       if (alumno.id === id) {
         alumnoEncontrado = alumno;
       }
@@ -46,34 +44,26 @@ export class AlumnoService {
     let alumnoEncontrado: Alumno = this.getAlumno(id);
     if (alumno.name) {
       alumnoEncontrado.name = alumno.name;
-    } else {
-      alumnoEncontrado.name = alumnoEncontrado.name;
     }
 
     if (alumno.lastName) {
       alumnoEncontrado.lastName = alumno.lastName;
-    } else {
-      alumnoEncontrado.lastName = alumnoEncontrado.lastName;
     }
 
     if (alumno.age) {
       alumnoEncontrado.age = alumno.age;
-    } else {
-      alumnoEncontrado.age = alumnoEncontrado.age;
     }
 
     if (alumno.email) {
       alumnoEncontrado.email = alumno.email;
-    } else {
-      alumnoEncontrado.email = alumnoEncontrado.email;
     }
   }
 
   deleteAlumno(id: number) {
     let alumnoEncontrado: Alumno = this.getAlumno(id);
-    let index = this.alumnos.indexOf(alumnoEncontrado);
-    this.alumnos.splice(index, 1);
+    let index = this.listAlumnos.indexOf(alumnoEncontrado);
+    this.listAlumnos.splice(index, 1);
   }
 
-  constructor() { }
+  constructor( ) { }
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+
 import { Alumno } from 'src/app/interfaces/alumno.interface';
 
 import { AlumnoService } from 'src/app/services/alumno.service';
@@ -11,26 +12,19 @@ import { AlumnoService } from 'src/app/services/alumno.service';
 })
 export class AlumnosComponent implements OnInit {
 
-  alumnos: Alumno[] = [];
+  listAlumnos: Alumno[] = [];
 
-  // TODO: Fix angular material table
   displayedColumns: string[] = ['id', 'nombre', 'apellido', 'edad', 'email'];
-  dataSource = this.getAlumnos();
-
-  constructor( private alumnoService: AlumnoService ) {
-    this.alumnos = this.getAlumnos();
-  }
+  dataSource!: MatTableDataSource<Alumno>;
+  constructor( private alumnoService: AlumnoService ) { }
 
   ngOnInit(): void {
-    // this.alumnos = this.getAlumnos();
+    this.cargarAlumnos();
   }
 
-  getAlumnos(): Alumno[] {
-    this.alumnoService.getAlumnos().subscribe(
-      (data: Alumno[]) => {
-        this.alumnos = data;
-      }
-    );
-    return this.alumnos;
+  cargarAlumnos() {
+    this.listAlumnos = this.alumnoService.getAlumnos();
+    this.dataSource = new MatTableDataSource<Alumno>(this.listAlumnos);
   }
+
 }
