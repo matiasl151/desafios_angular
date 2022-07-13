@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Alumno } from 'src/app/interfaces/alumno.interface';
 
 import { AlumnoService } from 'src/app/services/alumno.service';
@@ -13,14 +14,15 @@ export class AlumnosComponent implements OnInit {
   alumnos: Alumno[] = [];
 
   // TODO: Fix angular material table
-  // displayedColumns: string[] = ['id', 'nombre', 'apellido', 'edad', 'email'];
-  // dataSource = this.alumnos;
+  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'edad', 'email'];
+  dataSource = this.getAlumnos();
+
   constructor( private alumnoService: AlumnoService ) {
     this.alumnos = this.getAlumnos();
   }
 
   ngOnInit(): void {
-    this.alumnos = this.getAlumnos();
+    // this.alumnos = this.getAlumnos();
   }
 
   getAlumnos(): Alumno[] {
@@ -28,7 +30,7 @@ export class AlumnosComponent implements OnInit {
       (data: Alumno[]) => {
         this.alumnos = data;
       }
-    )
+    );
     return this.alumnos;
   }
 }
