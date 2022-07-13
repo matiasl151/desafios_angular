@@ -44,10 +44,29 @@ export class AlumnoService {
 
   updateAlumno(id: number, alumno: Alumno) {
     let alumnoEncontrado: Alumno = this.getAlumno(id);
-    alumnoEncontrado.name = alumno.name;
-    alumnoEncontrado.lastName = alumno.lastName;
-    alumnoEncontrado.age = alumno.age;
-    alumnoEncontrado.email = alumno.email;
+    if (alumno.name) {
+      alumnoEncontrado.name = alumno.name;
+    } else {
+      alumnoEncontrado.name = alumnoEncontrado.name;
+    }
+
+    if (alumno.lastName) {
+      alumnoEncontrado.lastName = alumno.lastName;
+    } else {
+      alumnoEncontrado.lastName = alumnoEncontrado.lastName;
+    }
+
+    if (alumno.age) {
+      alumnoEncontrado.age = alumno.age;
+    } else {
+      alumnoEncontrado.age = alumnoEncontrado.age;
+    }
+
+    if (alumno.email) {
+      alumnoEncontrado.email = alumno.email;
+    } else {
+      alumnoEncontrado.email = alumnoEncontrado.email;
+    }
   }
 
   deleteAlumno(id: number) {

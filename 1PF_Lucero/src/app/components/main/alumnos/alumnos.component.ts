@@ -10,23 +10,25 @@ import { AlumnoService } from 'src/app/services/alumno.service';
 })
 export class AlumnosComponent implements OnInit {
 
-  alumnos: Alumno[] = []
+  alumnos: Alumno[] = [];
 
-  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'edad', 'email'];
-
-  constructor( private alumnoService: AlumnoService ) { }
-
-  ngOnInit(): void {
-    this.getAlumnos();
-
+  // TODO: Fix angular material table
+  // displayedColumns: string[] = ['id', 'nombre', 'apellido', 'edad', 'email'];
+  // dataSource = this.alumnos;
+  constructor( private alumnoService: AlumnoService ) {
+    this.alumnos = this.getAlumnos();
   }
 
-  getAlumnos() {
+  ngOnInit(): void {
+    this.alumnos = this.getAlumnos();
+  }
+
+  getAlumnos(): Alumno[] {
     this.alumnoService.getAlumnos().subscribe(
       (data: Alumno[]) => {
         this.alumnos = data;
       }
     )
-    console.log(this.alumnos);
+    return this.alumnos;
   }
 }

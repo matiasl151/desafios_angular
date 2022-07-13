@@ -16,7 +16,6 @@ export class ContentComponent implements OnInit {
 
   setOption(option: string) {
     this.currentOption = option;
-    console.log(this.currentOption);
   }
 
 }

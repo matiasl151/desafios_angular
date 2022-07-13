@@ -53,7 +53,6 @@ export class FormAlumnosComponent implements OnInit {
     })
     const alumno = this.formularioAdd.value as Alumno;
     this.alumnoService.addAlumno(alumno);
-    console.log(this.alumnoService.alumnos);
     this.formularioAdd.reset();
   }
 
