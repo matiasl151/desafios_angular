@@ -1,0 +1,51 @@
+<div class="container">
+<mat-grid-list cols="3" rowHeight="1:1">
+  <mat-grid-tile>
+    <mat-card class="example-card">
+      <mat-card-title>Datos traidos de un observable</mat-card-title>
+      <mat-card-content>
+        <ul>
+          <li *ngFor="let dato of datos_observable">
+            <span >
+              {{ dato.username }}
+            </span>
+          </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="example-card">
+      <mat-card-title>Numeros traidos de un observable</mat-card-title>
+      <mat-card-subtitle>modificados por pipe map</mat-card-subtitle>
+      <mat-card-content>
+        <ul>
+          <li *ngFor="let numero of datos_numbers">
+            <span >
+              {{ numero }}
+            </span>
+          </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="example-card">
+      <mat-card-title>Datos traidos de una promesa</mat-card-title>
+      <mat-card-content>
+        <ul>
+          <li *ngFor="let dato of datos_promise">
+            <span >
+              {{ dato.username }}
+            </span>
+          </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+</div>
+
+
+
+
