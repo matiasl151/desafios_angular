@@ -11,6 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import { MatInputModule } from '@angular/material/input';
     MatListModule,
     MatGridListModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
   ],
   exports: [
     LayoutModule,
@@ -35,7 +37,8 @@ import { MatInputModule } from '@angular/material/input';
     MatListModule,
     MatGridListModule,
     MatFormFieldModule,
-    MatInputModule
-  ]
+    MatInputModule,
+    MatTableModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
