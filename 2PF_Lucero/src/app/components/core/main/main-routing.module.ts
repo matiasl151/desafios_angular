@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlumnosComponent } from '../alumnos/alumnos.component';
-import { ClasesComponent } from '../clases/clases.component';
-import { CursosComponent } from '../cursos/cursos.component';
+import { AlumnosComponent } from '../../features/alumnos/alumnos.component';
+import { CursosComponent } from '../../features/cursos/cursos.component';
 import { MainComponent } from './main.component';
 
 const routes: Routes = [
@@ -13,7 +12,6 @@ const routes: Routes = [
       { path: '', redirectTo: 'alumnos', pathMatch: 'full' },
       { path: 'alumnos', component: AlumnosComponent },
       { path: 'cursos', component: CursosComponent },
-      { path: 'clases', component: ClasesComponent },
     ],
   },
 ];
