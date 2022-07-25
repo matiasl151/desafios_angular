@@ -15,4 +15,8 @@ export class ListAlumnosComponent implements OnInit {
   ngOnInit(): void {
     this.listAlumnos = this._alumnosService.getAlumnos();
   }
+
+  deleteAlumno(id: number) {
+    this._alumnosService.deleteAlumno(id);
+  }
 }

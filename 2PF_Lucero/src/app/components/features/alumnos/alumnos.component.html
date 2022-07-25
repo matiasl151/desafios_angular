@@ -1,44 +1,26 @@
-<div *ngIf="option == 'formulario'">
-  <mat-grid-list cols="1" rowHeight="4:2">
-    <mat-grid-tile-header>
-      <mat-toolbar>
-        <mat-toolbar-row>
-          <span class="flex-spacer"></span>
-          <button mat-raised-button color="primary" (click)="setOptionForm('Add')">
-            Agregar Alumno
-          </button>
-          <span class="flex-spacer"></span>
-          <button mat-raised-button color="primary" (click)="setOptionForm('Edit')">
-            Editar Alumno
-          </button>
-          <span class="flex-spacer"></span>
-          <button mat-raised-button color="primary" (click)="setOptionForm('Delete')">
-            Eliminar Alumno
-          </button>
-          <span class="flex-spacer"></span>
-          <button mat-raised-button color="primary" (click)="setOption('lista')">Ver Alumnos</button>
-          <span class="flex-spacer"></span>
-        </mat-toolbar-row>
-      </mat-toolbar>
-    </mat-grid-tile-header>
-    <mat-grid-tile>
-      <app-form-alumnos [option]="option_form"></app-form-alumnos>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
-<div *ngIf="option == 'lista'">
+<div>
   <mat-grid-list cols="1" rowHeight="2:1">
     <mat-grid-tile-header>
       <mat-toolbar>
         <mat-toolbar-row>
           <span class="flex-spacer"></span>
-          <button mat-raised-button color="primary" (click)="setOption('formulario')">Agregar Alumno</button>
+          <button mat-raised-button color="primary" routerLink="/add">
+            Agregar Alumno
+          </button>
+          <span class="flex-spacer"></span>
+          <button mat-raised-button color="primary" routerLink="/list">
+            Ver alumnos
+          </button>
+          <span class="flex-spacer"></span>
+          <button mat-raised-button color="primary" routerLink="/alumnos">
+            Volver
+          </button>
           <span class="flex-spacer"></span>
         </mat-toolbar-row>
       </mat-toolbar>
     </mat-grid-tile-header>
     <mat-grid-tile>
-      <app-list-alumnos></app-list-alumnos>
+      <router-outlet></router-outlet>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

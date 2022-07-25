@@ -6,8 +6,7 @@
       <th scope="col">Apellido</th>
       <th scope="col">Edad</th>
       <th scope="col">Email</th>
-      <!-- TODO agregar acciones -->
-      <!-- <th scope="col">Acciones</th> -->
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -17,14 +16,20 @@
       <td>{{ alumno.lastName }}</td>
       <td>{{ alumno.age }}</td>
       <td>{{ alumno.email }}</td>
-      <!-- <td>
-        <button mat-button color="primary" routerLink="/form">
+      <td>
+        <button mat-button color="primary" [routerLink]="['/edit', alumno.id]">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-button color="primary" routerLink="/form">
+        <button mat-button color="primary" (click)="deleteAlumno(alumno.id)">
           <mat-icon>delete</mat-icon>
         </button>
-      </td> -->
+        <button
+          mat-button
+          color="primary"
+          [routerLink]="['/details', alumno.id]">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

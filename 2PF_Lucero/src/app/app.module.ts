@@ -7,10 +7,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { MainModule } from './components/core/main/main.module';
-import { InscripcionesComponent } from './components/features/inscripciones/inscripciones.component';
+import { AlumnosService } from './services/alumnos/alumnos.service';
 
 @NgModule({
-  declarations: [AppComponent, InscripcionesComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,17 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { AddAlumnosComponent } from './add-alumnos/add-alumnos.component';
 import { AlumnosComponent } from './alumnos.component';
-import { FormAlumnosComponent } from './form-alumnos/form-alumnos.component';
+import { DetailsAlumnosComponent } from './details-alumnos/details-alumnos.component';
+import { EditAlumnosComponent } from './edit-alumnos/edit-alumnos.component';
 import { ListAlumnosComponent } from './list-alumnos/list-alumnos.component';
 
 const routes: Routes = [
-  //TODO: agregar estas rutas al componente alumnos
   {
     path: '',
     component: AlumnosComponent,
     children: [
-      { path: '/form', component: FormAlumnosComponent },
-      { path: '/list', component: ListAlumnosComponent },
+      { path: 'list', component: ListAlumnosComponent },
+      { path: 'add', component: AddAlumnosComponent },
+      { path: 'edit/:id', component: EditAlumnosComponent },
+      { path: 'details/:id', component: DetailsAlumnosComponent },
     ],
   },
 ];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class AlumnosRoutingModule {}

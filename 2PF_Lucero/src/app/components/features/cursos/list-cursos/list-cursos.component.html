@@ -1,1 +1,19 @@
-<p>list-cursos works!</p>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let curso of cursos">
+      <td>{{ curso.name }}</td>
+      <td>{{ curso.description }}</td>
+      <td>
+        <button>Editar</button>
+        <button>Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
