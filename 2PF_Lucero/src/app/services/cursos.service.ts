@@ -19,10 +19,12 @@ export class CursosService {
   constructor(private _alumnosService: AlumnosService) {}
 
   getCursos(): Curso[] {
+    // Devuelve el array de cursos
     return this.cursos;
   }
 
   getCurso(id: number): Curso {
+    // Devuelve un curso en base al id
     let cursoEncontrado: Curso = {} as Curso;
     this.cursos.forEach(curso => {
       if (curso.id === id) {
@@ -33,11 +35,13 @@ export class CursosService {
   }
 
   addCurso(curso: Curso): void {
+    // Agrega un curso al array de cursos
     this.cursos.push(curso);
   }
 
-  updateCurso(curso: Curso): void {
-    let cursoEncontrado: Curso = this.getCurso(curso.id);
+  updateCurso(id: number, curso: Curso): void {
+    // Actualiza un curso
+    let cursoEncontrado: Curso = this.getCurso(id);
     if (curso.name) {
       cursoEncontrado.name = curso.name;
     }
@@ -48,13 +52,15 @@ export class CursosService {
   }
 
   deleteCurso(id: number): void {
+    // Elimina un curso
     let cursoEncontrado: Curso = this.getCurso(id);
     let index = this.cursos.indexOf(cursoEncontrado);
     this.cursos.splice(index, 1);
   }
 
-  addAlumno(curso: Curso, alumno: Alumno): void {
-    let cursoEncontrado: Curso = this.getCurso(curso.id);
+  addAlumno(id: number, alumno: Alumno): void {
+    // Agrega un alumno al array de alumnos de un curso
+    let cursoEncontrado: Curso = this.getCurso(id);
     let alumnoEncontrado: Alumno = this._alumnosService.getAlumno(alumno.id);
     if (alumnoEncontrado) {
       cursoEncontrado.alumnos.push(alumnoEncontrado);
@@ -62,11 +68,13 @@ export class CursosService {
   }
 
   getAlumnos(curso: Curso): Alumno[] {
+    // Devuelve el array de alumnos de un curso
     let cursoEncontrado: Curso = this.getCurso(curso.id);
     return cursoEncontrado.alumnos;
   }
 
   getAlumno(curso: Curso, id: number): Alumno {
+    // Devuelve un alumno en base al id dentro de un curso
     let cursoEncontrado: Curso = this.getCurso(curso.id);
     let alumnoEncontrado: Alumno = {} as Alumno;
     cursoEncontrado.alumnos.forEach(alumno => {
@@ -75,5 +83,26 @@ export class CursosService {
       }
     });
     return alumnoEncontrado;
+  }
+
+  deleteAlumnoFromCurso(curso: Curso, id_alumno: number): void {
+    // Elimina un alumno en base al id dentro de un curso
+    let cursoEncontrado: Curso = this.getCurso(curso.id);
+    let alumnoEncontrado: Alumno = this.getAlumno(curso, id_alumno);
+    let index = cursoEncontrado.alumnos.indexOf(alumnoEncontrado);
+    cursoEncontrado.alumnos.splice(index, 1);
+  }
+
+  getCursosAlumno(alumno: Alumno): Curso[] {
+    // Devuelve el array de cursos de un alumno
+    let cursosAlumno: Curso[] = [];
+    this.cursos.forEach(curso => {
+      curso.alumnos.forEach(alumnoCurso => {
+        if (alumnoCurso.id === alumno.id) {
+          cursosAlumno.push(curso);
+        }
+      });
+    });
+    return cursosAlumno;
   }
 }

@@ -1,5 +1,47 @@
-<!-- TODO usar angular material -->
-<h1>{{ alumno?.name }} {{ alumno?.lastName }}</h1>
-<p>{{ alumno?.age }}</p>
-<p>{{ alumno?.email }}</p>
-<p>tuki</p>
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h1>
+          Nombre: {{ alumno?.name | uppercase }} Apellido:
+          {{ alumno?.lastName | uppercase }}
+        </h1>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p><strong>Edad:</strong> {{ alumno?.age }}</p>
+      <p><strong>Email:</strong> {{ alumno?.email }}</p>
+      <mat-card-title> Cursos inscripto:</mat-card-title>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let curso of cursosAlumno">
+            <td>{{ curso.name }}</td>
+            <td>{{ curso.description }}</td>
+            <td>
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="borrarCurso(curso)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" routerLink="/alumnos">
+        Volver
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

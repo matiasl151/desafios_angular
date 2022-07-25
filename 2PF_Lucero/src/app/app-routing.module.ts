@@ -8,7 +8,6 @@ const routes: Routes = [
     path: '',
     component: MainComponent,
     children: [
-      { path: '', redirectTo: 'alumnos', pathMatch: 'full' },
       {
         path: 'alumnos',
         loadChildren: () =>

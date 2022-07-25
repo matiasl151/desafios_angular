@@ -10,7 +10,6 @@ const routes: Routes = [
     path: '',
     component: MainComponent,
     children: [
-      { path: '', redirectTo: 'alumnos', pathMatch: 'full' },
       { path: 'alumnos', component: AlumnosComponent },
       { path: 'cursos', component: CursosComponent },
       { path: 'inscripciones', component: InscripcionesComponent },

@@ -5,6 +5,8 @@ import { Alumno } from 'src/app/interfaces/alumno.interface';
   providedIn: 'root',
 })
 export class AlumnosService {
+  constructor() {}
+
   listAlumnos: Alumno[] = [
     {
       id: 1,
@@ -57,6 +59,4 @@ export class AlumnosService {
     let index = this.listAlumnos.indexOf(alumnoEncontrado);
     this.listAlumnos.splice(index, 1);
   }
-
-  constructor() {}
 }

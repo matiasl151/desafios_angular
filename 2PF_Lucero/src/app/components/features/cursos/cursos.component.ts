@@ -8,7 +8,5 @@ import { Component, OnInit } from '@angular/core';
 export class CursosComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('CursosComponent');
-  }
+  ngOnInit(): void {}
 }

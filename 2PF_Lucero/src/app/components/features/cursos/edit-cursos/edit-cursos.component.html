@@ -1,1 +1,22 @@
-<p>edit-cursos works!</p>
+<form [formGroup]="formularioEdit" (ngSubmit)="editCurso()">
+  <h2>Editar Curso</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input type="text" matInput autocomplete="off" formControlName="name" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Descripción</mat-label>
+    <textarea
+      matInput
+      autocomplete="off"
+      formControlName="description"></textarea>
+  </mat-form-field>
+  <button
+    class="ancho"
+    mat-raised-button
+    color="primary"
+    routerLink="/cursos"
+    (click)="editCurso()">
+    Editar
+  </button>
+</form>

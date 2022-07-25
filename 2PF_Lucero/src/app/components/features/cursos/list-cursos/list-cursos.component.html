@@ -1,21 +1,40 @@
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Descripcion</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let curso of cursos">
-      <td>{{ curso.name }}</td>
-      <td>{{ curso.description }}</td>
-      <td>
-        <button>Editar</button>
-        <button>Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<br />
-<button mat-raised-button color="primary" routerLink="/cursos/add">Agregar Curso</button>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let curso of cursos">
+        <td>{{ curso.id }}</td>
+        <td>{{ curso.name }}</td>
+        <td>{{ curso.description }}</td>
+        <td>
+          <button
+            mat-button
+            color="primary"
+            [routerLink]="['/cursos/edit-curso', curso.id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-button color="primary" (click)="onDelete(curso.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button
+            mat-button
+            color="primary"
+            [routerLink]="['/cursos/details-curso', curso.id]">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <button mat-raised-button color="primary" routerLink="/cursos/add-curso">
+    Agregar Curso
+  </button>
+</div>

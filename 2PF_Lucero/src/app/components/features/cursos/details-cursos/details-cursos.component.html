@@ -1,1 +1,43 @@
-<p>details-cursos works!</p>
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h1>{{ curso.name }}</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-subtitle>{{ curso.description }}</mat-card-subtitle>
+      <mat-card-title>Alumnos inscriptos:</mat-card-title>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Email</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let alumno of curso.alumnos">
+            <td>{{ alumno.name }}</td>
+            <td>{{ alumno.lastName }}</td>
+            <td>{{ alumno.email }}</td>
+            <td>
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="borrarAlumno(alumno.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" routerLink="/cursos">
+        Volver
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

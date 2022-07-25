@@ -1,27 +1,36 @@
-<form [formGroup]="formularioEdit" (ngSubmit)="editAlumno()">
-  <h2>Editar Alumno</h2>
-  <mat-form-field appearance="fill">
-    <mat-label>Nombre</mat-label>
-    <input type="text" matInput autocomplete="off" formControlName="name" />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Apellido</mat-label>
-    <input type="text" matInput autocomplete="off" formControlName="lastName" />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Edad</mat-label>
-    <input type="text" matInput autocomplete="off" formControlName="age" />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Email</mat-label>
-    <input type="text" matInput autocomplete="off" formControlName="email" />
-  </mat-form-field>
-  <button
-    class="ancho"
-    mat-raised-button
-    color="primary"
-    routerLink="/list"
-    (click)="editAlumno()">
-    Editar
-  </button>
-</form>
+<div class="container">
+  <form [formGroup]="formularioEdit" (ngSubmit)="editAlumno()">
+    <h2>Editar Alumno</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="name" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input
+        type="text"
+        matInput
+        autocomplete="off"
+        formControlName="lastName" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Edad</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="age" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="email" />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/alumnos"
+      (click)="editAlumno()">
+      Editar
+    </button>
+    <br />
+    <button mat-raised-button color="primary" routerLink="/alumnos">
+      Volver
+    </button>
+  </form>
+</div>

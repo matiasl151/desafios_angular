@@ -10,11 +10,13 @@ import { CursosService } from 'src/app/services/cursos.service';
 export class ListCursosComponent implements OnInit {
   cursos: Curso[] = [];
 
-  constructor(private _cursosService: CursosService) {
+  constructor(private _cursosService: CursosService) {}
+
+  ngOnInit(): void {
     this.cursos = this._cursosService.getCursos();
   }
 
-  ngOnInit(): void {
-    console.log('ListCursosComponent');
+  onDelete(id: number) {
+    this._cursosService.deleteCurso(id);
   }
 }

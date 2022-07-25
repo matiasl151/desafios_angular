@@ -12,10 +12,11 @@ const routes: Routes = [
     path: '',
     component: AlumnosComponent,
     children: [
-      { path: 'alumnos/list', component: ListAlumnosComponent },
-      { path: 'alumnos/add', component: AddAlumnosComponent },
-      { path: 'alumnos/edit/:id', component: EditAlumnosComponent },
-      { path: 'alumnos/details/:id', component: DetailsAlumnosComponent },
+      { path: '', redirectTo: 'list-alumnos', pathMatch: 'full' },
+      { path: 'list-alumnos', component: ListAlumnosComponent },
+      { path: 'add-alumno', component: AddAlumnosComponent },
+      { path: 'edit-alumno/:id', component: EditAlumnosComponent },
+      { path: 'details-alumno/:id', component: DetailsAlumnosComponent },
     ],
   },
 ];
