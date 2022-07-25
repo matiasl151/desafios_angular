@@ -11,10 +11,11 @@ const routes: Routes = [
     path: '',
     component: CursosComponent,
     children: [
-      { path: 'list', component: ListCursosComponent },
-      { path: 'add', component: AddCursosComponent },
-      { path: 'edit/:id', component: EditCursosComponent },
-      { path: 'details/:id', component: DetailsCursosComponent },
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
+      { path: 'cursos/list', component: ListCursosComponent },
+      { path: 'cursos/add', component: AddCursosComponent },
+      { path: 'cursos/edit/:id', component: EditCursosComponent },
+      { path: 'cursos/details/:id', component: DetailsCursosComponent },
     ],
   },
 ];
