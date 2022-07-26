@@ -75,6 +75,18 @@ export class InscripcionesService {
     }
   }
 
+  deleteInscripcionesByAlumno(alumnoId: number): void {
+    this.inscripciones = this.inscripciones.filter(
+      inscripcion => inscripcion.alumno.id !== alumnoId
+    );
+  }
+
+  deleteInscripcionesByCurso(cursoId: number): void {
+    this.inscripciones = this.inscripciones.filter(
+      inscripcion => inscripcion.curso.id !== cursoId
+    );
+  }
+
   getInscripcionesByAlumno(alumnoId: number): Inscripcion[] {
     return this.inscripciones.filter(
       inscripcion => inscripcion.alumno.id === alumnoId

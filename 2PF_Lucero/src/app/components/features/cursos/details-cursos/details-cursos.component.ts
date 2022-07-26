@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { CursosService } from 'src/app/services/cursos/cursos.service';
 import { Curso } from 'src/app/interfaces/curso.interface';
 
+import { InscripcionesService } from 'src/app/services/inscripciones/inscripciones.service';
+
 @Component({
   selector: 'app-details-cursos',
   templateUrl: './details-cursos.component.html',
@@ -15,7 +17,8 @@ export class DetailsCursosComponent implements OnInit, OnDestroy {
   curso: Curso = {} as Curso;
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _cursosService: CursosService
+    private _cursosService: CursosService,
+    private _inscripcionesService: InscripcionesService
   ) {}
 
   ngOnInit(): void {
@@ -31,5 +34,6 @@ export class DetailsCursosComponent implements OnInit, OnDestroy {
 
   borrarAlumno(id: number) {
     this._cursosService.deleteAlumnoFromCurso(this.curso, id);
+    this._inscripcionesService.deleteInscripcionesByCurso(this.curso.id);
   }
 }
