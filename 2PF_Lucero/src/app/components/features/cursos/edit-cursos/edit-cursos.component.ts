@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Curso } from 'src/app/interfaces/curso.interface';
-import { CursosService } from 'src/app/services/cursos.service';
+import { CursosService } from 'src/app/services/cursos/cursos.service';
 
 @Component({
   selector: 'app-edit-cursos',

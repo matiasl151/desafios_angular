@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Curso } from 'src/app/interfaces/curso.interface';
-import { CursosService } from 'src/app/services/cursos.service';
+import { CursosService } from 'src/app/services/cursos/cursos.service';
 
 @Component({
   selector: 'app-add-cursos',

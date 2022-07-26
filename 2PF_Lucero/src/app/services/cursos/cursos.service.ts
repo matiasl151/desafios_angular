@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Curso } from '../interfaces/curso.interface';
-import { Alumno } from '../interfaces/alumno.interface';
-import { AlumnosService } from './alumnos/alumnos.service';
+import { Curso } from '../../interfaces/curso.interface';
+import { Alumno } from '../../interfaces/alumno.interface';
+import { AlumnosService } from '../alumnos/alumnos.service';
 
 @Injectable({
   providedIn: 'root',
@@ -62,7 +62,10 @@ export class CursosService {
     // Agrega un alumno al array de alumnos de un curso
     let cursoEncontrado: Curso = this.getCurso(id);
     let alumnoEncontrado: Alumno = this._alumnosService.getAlumno(alumno.id);
-    if (alumnoEncontrado) {
+    if (
+      alumnoEncontrado &&
+      !cursoEncontrado.alumnos.includes(alumnoEncontrado)
+    ) {
       cursoEncontrado.alumnos.push(alumnoEncontrado);
     }
   }
