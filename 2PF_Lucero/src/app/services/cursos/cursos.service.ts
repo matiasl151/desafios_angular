@@ -81,13 +81,6 @@ export class CursosService {
       cursoEncontrado.alumnos.push(alumnoEncontrado);
     }
   }
-
-  getAlumnos(curso: Curso): Alumno[] {
-    // Devuelve el array de alumnos de un curso
-    let cursoEncontrado: Curso = this.getCurso(curso.id);
-    return cursoEncontrado.alumnos;
-  }
-
   getAlumno(curso: Curso, id: number): Alumno {
     // Devuelve un alumno en base al id dentro de un curso
     let cursoEncontrado: Curso = this.getCurso(curso.id);

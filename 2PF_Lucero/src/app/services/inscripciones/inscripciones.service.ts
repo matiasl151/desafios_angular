@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlumnosService } from '../alumnos/alumnos.service';
-import { Alumno } from '../../interfaces/alumno.interface';
 import { CursosService } from '../cursos/cursos.service';
-import { Curso } from '../../interfaces/curso.interface';
 import { Inscripcion } from '../../interfaces/inscripcion.interface';
 
 @Injectable({
@@ -84,18 +82,6 @@ export class InscripcionesService {
   deleteInscripcionesByCurso(cursoId: number): void {
     this.inscripciones = this.inscripciones.filter(
       inscripcion => inscripcion.curso.id !== cursoId
-    );
-  }
-
-  getInscripcionesByAlumno(alumnoId: number): Inscripcion[] {
-    return this.inscripciones.filter(
-      inscripcion => inscripcion.alumno.id === alumnoId
-    );
-  }
-
-  getInscripcionesByCurso(cursoId: number): Inscripcion[] {
-    return this.inscripciones.filter(
-      inscripcion => inscripcion.curso.id === cursoId
     );
   }
 
