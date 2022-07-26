@@ -14,6 +14,18 @@ export class CursosService {
       description: 'Curso de Angular',
       alumnos: [],
     },
+    {
+      id: 2,
+      name: 'JavaScript',
+      description: 'Curso de JavaScript',
+      alumnos: [],
+    },
+    {
+      id: 3,
+      name: 'TypeScript',
+      description: 'Curso de TypeScript',
+      alumnos: [],
+    },
   ];
 
   constructor(private _alumnosService: AlumnosService) {}

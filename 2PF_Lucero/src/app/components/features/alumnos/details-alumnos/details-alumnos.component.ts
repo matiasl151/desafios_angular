@@ -14,7 +14,7 @@ import { CursosService } from 'src/app/services/cursos/cursos.service';
 export class DetailsAlumnosComponent implements OnInit, OnDestroy {
   id!: number;
   subscription!: Subscription;
-  alumno!: Alumno | null;
+  alumno!: Alumno;
   cursosAlumno: Curso[] = [];
   constructor(
     private _alumnosService: AlumnosService,

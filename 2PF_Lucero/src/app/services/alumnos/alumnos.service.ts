@@ -13,7 +13,28 @@ export class AlumnosService {
       name: 'Juan',
       lastName: 'Perez',
       age: 20,
-      email: '',
+      email: 'juan@example.com',
+    },
+    {
+      id: 2,
+      name: 'Pedro',
+      lastName: 'Perez',
+      age: 21,
+      email: 'pedro@example.com',
+    },
+    {
+      id: 3,
+      name: 'Maria',
+      lastName: 'Lopez',
+      age: 22,
+      email: 'maria@example.com',
+    },
+    {
+      id: 4,
+      name: 'Lucas',
+      lastName: 'Gonzalez',
+      age: 23,
+      email: 'lucas@example.com',
     },
   ];
 
