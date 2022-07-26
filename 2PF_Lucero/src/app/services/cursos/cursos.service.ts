@@ -12,7 +12,7 @@ export class CursosService {
       id: 1,
       name: 'Angular',
       description: 'Curso de Angular',
-      alumnos: [{ id: 1, name: 'Juan', lastName: 'Perez', age: 20, email: '' }],
+      alumnos: [],
     },
   ];
 

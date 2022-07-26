@@ -9,25 +9,7 @@ import { Inscripcion } from '../../interfaces/inscripcion.interface';
   providedIn: 'root',
 })
 export class InscripcionesService {
-  inscripciones: Inscripcion[] = [
-    {
-      id: 1,
-      alumno: {
-        id: 1,
-        name: 'Juan',
-        lastName: 'Perez',
-        age: 20,
-        email: '',
-      },
-      curso: {
-        id: 1,
-        name: 'Angular',
-        description: 'Curso de Angular',
-        alumnos: [],
-      },
-      fecha: new Date(),
-    },
-  ];
+  inscripciones: Inscripcion[] = [];
 
   constructor(
     private _alumnosService: AlumnosService,
@@ -39,27 +21,41 @@ export class InscripcionesService {
   }
 
   getInscripcion(id: number) {
-    return this.inscripciones.find(inscripcion => inscripcion.id === id);
-  }
-
-  addInscripcion(alumnoId: number, cursoId: number): void {
-    const alumno = this._alumnosService.getAlumno(alumnoId);
-    const curso = this._cursosService.getCurso(cursoId);
-    const inscripcion: Inscripcion = {
-      id: this.inscripciones.length + 1,
-      alumno,
-      curso,
-      fecha: new Date(),
-    };
-    this.inscripciones.push(inscripcion);
-    this._cursosService.addAlumno(cursoId, alumno);
-  }
-
-  updateInscripcion(inscripcion: Inscripcion): void {
-    const index = this.inscripciones.findIndex(
-      inscripcionDB => inscripcionDB.id === inscripcion.id
+    let inscripcionEncontrada = this.inscripciones.find(
+      inscripcion => inscripcion.id === id
     );
-    this.inscripciones[index] = inscripcion;
+    if (inscripcionEncontrada) {
+      return inscripcionEncontrada;
+    } else {
+      return {} as Inscripcion;
+    }
+  }
+
+  addInscripcion(inscripcion: Inscripcion): void {
+    // Agregar inscripcion, agregar alumno al curso
+    // Validar que el alumno no esté inscripto en el curso
+    const inscripcionesByAlumnoAndCurso = this.getInscripcionesByAlumnoAndCurso(
+      inscripcion.alumno.id,
+      inscripcion.curso.id
+    );
+    if (inscripcionesByAlumnoAndCurso.length === 0) {
+      this.inscripciones.push(inscripcion);
+      this._cursosService.addAlumno(inscripcion.curso.id, inscripcion.alumno);
+    } else {
+      console.error('El alumno ya está inscripto en el curso');
+    }
+  }
+
+  updateInscripcion(id: number, inscripcion: Inscripcion): void {
+    let inscripcionEncontrada = this.getInscripcion(id);
+    if (inscripcionEncontrada) {
+      if (inscripcion.alumno) {
+        inscripcionEncontrada.alumno = inscripcion.alumno;
+      }
+      if (inscripcion.curso) {
+        inscripcionEncontrada.curso = inscripcion.curso;
+      }
+    }
   }
 
   deleteInscripcion(id: number): void {

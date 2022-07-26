@@ -1,0 +1,34 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h1>Inscripcion Nro: {{ inscripcion.id }}</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-title>Alumno:</mat-card-title>
+      <mat-card-subtitle>
+        <a [routerLink]="['/alumnos/details-alumno', inscripcion.alumno.id]">
+          {{ inscripcion.alumno.name }}
+          {{ inscripcion.alumno.lastName }}
+        </a>
+      </mat-card-subtitle>
+      <mat-card-title>Curso:</mat-card-title>
+      <mat-card-subtitle>
+        <a [routerLink]="['/cursos/details-curso', inscripcion.curso.id]">
+          {{ inscripcion.curso.name }}
+        </a>
+      </mat-card-subtitle>
+      <mat-card-title>Fecha de inscripcion:</mat-card-title>
+      <mat-card-subtitle>
+        {{ inscripcion.fecha.getDate() }} - {{ inscripcion.fecha.getMonth() }} -
+        {{ inscripcion.fecha.getFullYear() }}
+      </mat-card-subtitle>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" routerLink="/inscripciones">
+        Volver
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

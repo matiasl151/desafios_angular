@@ -1,0 +1,38 @@
+<div class="container">
+  <form [formGroup]="formularioEdit">
+    <mat-form-field appearance="fill">
+      <mat-label>Curso a inscribir</mat-label>
+      <mat-select formControlName="curso">
+        <mat-option>Seleccione un Curso</mat-option>
+        <mat-option *ngFor="let curso of cursos" [value]="curso">{{
+          curso.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Alumno</mat-label>
+      <mat-select formControlName="alumno">
+        <mat-option>Seleccione un Alumno</mat-option>
+        <mat-option *ngFor="let alumno of alumnos" [value]="alumno"
+          >{{ alumno.name }} {{ alumno.lastName }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha</mat-label>
+      <input type="date" matInput autocomplete="off" formControlName="fecha" />
+    </mat-form-field>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      routerLink="/inscripciones"
+      (click)="editInscripcion()">
+      Editar Inscripcion
+    </button>
+    <br />
+    <button mat-raised-button color="primary" routerLink="/inscripciones">
+      Volver
+    </button>
+  </form>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Alumno } from 'src/app/interfaces/alumno.interface';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './edit-alumnos.component.html',
   styleUrls: ['./edit-alumnos.component.scss'],
 })
-export class EditAlumnosComponent implements OnInit {
+export class EditAlumnosComponent implements OnInit, OnDestroy {
   alumno!: Alumno;
   subscription!: Subscription;
   public formularioEdit: FormGroup;
@@ -42,5 +42,9 @@ export class EditAlumnosComponent implements OnInit {
   editAlumno() {
     const alumno = this.formularioEdit.value as Alumno;
     this._alumnosService.updateAlumno(this.alumno.id, alumno);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

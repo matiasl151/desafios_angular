@@ -22,6 +22,13 @@ const routes: Routes = [
             m => m.CursosModule
           ),
       },
+      {
+        path: 'inscripciones',
+        loadChildren: () =>
+          import(
+            './components/features/inscripciones/inscripciones.module'
+          ).then(m => m.InscripcionesModule),
+      },
     ],
   },
 ];
