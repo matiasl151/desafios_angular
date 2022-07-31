@@ -1,0 +1,111 @@
+{
+  "alumnos": [
+    {
+      "id": 1,
+      "name": "Juan",
+      "lastName": "Perez",
+      "age": 20,
+      "email": "juan@example.com"
+    },
+    {
+      "id": 3,
+      "name": "Maria",
+      "lastName": "Lopez",
+      "age": 22,
+      "email": "maria@example.com"
+    },
+    {
+      "id": 4,
+      "name": "Lucas",
+      "lastName": "Gonzalez",
+      "age": 23,
+      "email": "lucas@example.com"
+    },
+    {
+      "id": 5,
+      "name": "Ana",
+      "lastName": "Gonzalez",
+      "age": 24,
+      "email": "ana@example.com"
+    },
+    {
+      "id": 6,
+      "name": "Jose",
+      "lastName": "Gonzalez",
+      "age": 25,
+      "email": "jose@example.com"
+    },
+    {
+      "id": 7,
+      "name": "Marta",
+      "lastName": "Gonzalez",
+      "age": 26,
+      "email": "marta@example.com"
+    },
+    {
+      "id": 8,
+      "name": "Luis",
+      "lastName": "Gonzalez",
+      "age": 27,
+      "email": "luis@example.com"
+    },
+    {
+      "id": 9,
+      "name": "Sofia",
+      "lastName": "Gonzalez",
+      "age": 28,
+      "email": "sofia@example.com"
+    },
+    {
+      "id": 10,
+      "name": "Roberto",
+      "lastName": "Roberts",
+      "age": "26",
+      "email": "roberto@example.com"
+    }
+  ],
+  "cursos": [
+    {
+      "id": 1,
+      "name": "Angular",
+      "description": "Curso de Angular",
+      "alumnos": []
+    },
+    {
+      "id": 2,
+      "name": "React",
+      "description": "Curso de React",
+      "alumnos": []
+    },
+    {
+      "id": 3,
+      "name": "Vue",
+      "description": "Curso de Vue",
+      "alumnos": []
+    },
+    {
+      "id": 4,
+      "name": "JavaScript",
+      "description": "Curso de JavaScript",
+      "alumnos": []
+    },
+    {
+      "id": 5,
+      "name": "TypeScript",
+      "description": "Curso de TypeScript",
+      "alumnos": []
+    },
+    {
+      "id": 6,
+      "name": "HTML",
+      "description": "Curso de HTML",
+      "alumnos": []
+    },
+    {
+      "id": 7,
+      "name": "CSS",
+      "description": "Curso de CSS",
+      "alumnos": []
+    }
+  ]
+}

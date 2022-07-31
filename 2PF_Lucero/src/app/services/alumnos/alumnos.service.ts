@@ -1,63 +1,31 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Alumno } from 'src/app/interfaces/alumno.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AlumnosService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  listAlumnos: Alumno[] = [
-    {
-      id: 1,
-      name: 'Juan',
-      lastName: 'Perez',
-      age: 20,
-      email: 'juan@example.com',
-    },
-    {
-      id: 2,
-      name: 'Pedro',
-      lastName: 'Perez',
-      age: 21,
-      email: 'pedro@example.com',
-    },
-    {
-      id: 3,
-      name: 'Maria',
-      lastName: 'Lopez',
-      age: 22,
-      email: 'maria@example.com',
-    },
-    {
-      id: 4,
-      name: 'Lucas',
-      lastName: 'Gonzalez',
-      age: 23,
-      email: 'lucas@example.com',
-    },
-  ];
-
-  addAlumno(alumno: Alumno) {
-    this.listAlumnos.push(alumno);
+  addAlumno(alumno: Alumno): Observable<any> {
+    return this.http.post('/api/alumnos', alumno);
   }
 
-  getAlumnos() {
-    return this.listAlumnos;
+  getAlumnos(): Observable<Alumno[]> {
+    return this.http.get<Alumno[]>('/api/alumnos');
   }
 
-  getAlumno(id: number): Alumno {
-    let alumnoEncontrado: Alumno = {} as Alumno;
-    this.listAlumnos.forEach(alumno => {
-      if (alumno.id === id) {
-        alumnoEncontrado = alumno;
-      }
+  getAlumno(id: number): Observable<Alumno> {
+    return this.http.get<Alumno>(`/api/alumnos/${id}`);
+  }
+
+  updateAlumno(id: number, alumno: Alumno): Observable<any> {
+    let alumnoEncontrado!: Alumno;
+    this.getAlumno(id).subscribe(a => {
+      alumnoEncontrado = a;
     });
-    return alumnoEncontrado;
-  }
-
-  updateAlumno(id: number, alumno: Alumno) {
-    let alumnoEncontrado: Alumno = this.getAlumno(id);
     if (alumno.name) {
       alumnoEncontrado.name = alumno.name;
     }
@@ -73,11 +41,19 @@ export class AlumnosService {
     if (alumno.email) {
       alumnoEncontrado.email = alumno.email;
     }
+
+    return this.http.put(`/api/alumnos/${id}`, alumnoEncontrado);
   }
 
-  deleteAlumno(id: number) {
-    let alumnoEncontrado: Alumno = this.getAlumno(id);
-    let index = this.listAlumnos.indexOf(alumnoEncontrado);
-    this.listAlumnos.splice(index, 1);
+  deleteAlumno(id: number): Observable<any> {
+    return this.http.delete(`/api/alumnos/${id}`);
+  }
+
+  getLastId(): number {
+    let id = 0;
+    this.getAlumnos().subscribe(alumnos => {
+      id = alumnos[alumnos.length - 1].id;
+    });
+    return id;
   }
 }

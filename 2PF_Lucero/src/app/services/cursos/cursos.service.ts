@@ -73,13 +73,18 @@ export class CursosService {
   addAlumno(id: number, alumno: Alumno): void {
     // Agrega un alumno al array de alumnos de un curso
     let cursoEncontrado: Curso = this.getCurso(id);
-    let alumnoEncontrado: Alumno = this._alumnosService.getAlumno(alumno.id);
-    if (
-      alumnoEncontrado &&
-      !cursoEncontrado.alumnos.includes(alumnoEncontrado)
-    ) {
+    let alumnoEncontrado: Alumno;
+    //TODO chequear esto cuando se cambie a rest este servicio
+    this._alumnosService.getAlumno(alumno.id).subscribe(alumno => {
+      alumnoEncontrado = alumno;
       cursoEncontrado.alumnos.push(alumnoEncontrado);
-    }
+      if (
+        alumnoEncontrado &&
+        !cursoEncontrado.alumnos.includes(alumnoEncontrado)
+      ) {
+        cursoEncontrado.alumnos.push(alumnoEncontrado);
+      }
+    });
   }
   getAlumno(curso: Curso, id: number): Alumno {
     // Devuelve un alumno en base al id dentro de un curso

@@ -7,7 +7,7 @@ import { MainComponent } from './main.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'main',
     component: MainComponent,
     children: [
       { path: 'alumnos', component: AlumnosComponent },

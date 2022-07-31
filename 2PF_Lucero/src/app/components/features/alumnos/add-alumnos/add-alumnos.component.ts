@@ -29,14 +29,14 @@ export class AddAlumnosComponent implements OnInit {
 
   addAlumno() {
     const alumno: Alumno = {
-      id: this._alumnosService.listAlumnos.length + 1,
+      id: this._alumnosService.getLastId(),
       name: this.formularioAdd.value.name,
       lastName: this.formularioAdd.value.lastName,
       age: this.formularioAdd.value.age,
       email: this.formularioAdd.value.email,
     };
-    this._alumnosService.addAlumno(alumno);
-    console.log(this._alumnosService.getAlumnos());
-    this.formularioAdd.reset();
+    this._alumnosService.addAlumno(alumno).subscribe(() => {
+      this.formularioAdd.reset();
+    });
   }
 }

@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class EditAlumnosComponent implements OnInit, OnDestroy {
   alumno!: Alumno;
+  id: number = 0;
   subscription!: Subscription;
   public formularioEdit: FormGroup;
   constructor(
@@ -29,7 +30,10 @@ export class EditAlumnosComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this._activatedRoute.paramMap.subscribe(params => {
-      this.alumno = this._alumnosService.getAlumno(+params.get('id')!);
+      this.id = Number(params.get('id'));
+    });
+    this._alumnosService.getAlumno(this.id).subscribe((alumno: Alumno) => {
+      this.alumno = alumno;
       this.formularioEdit.setValue({
         name: this.alumno.name,
         lastName: this.alumno.lastName,
@@ -41,7 +45,11 @@ export class EditAlumnosComponent implements OnInit, OnDestroy {
 
   editAlumno() {
     const alumno = this.formularioEdit.value as Alumno;
-    this._alumnosService.updateAlumno(this.alumno.id, alumno);
+    this._alumnosService.updateAlumno(this.id, alumno).subscribe(() => {
+      this._alumnosService.getAlumno(this.id).subscribe((alumno: Alumno) => {
+        this.alumno = alumno;
+      });
+    });
   }
 
   ngOnDestroy(): void {

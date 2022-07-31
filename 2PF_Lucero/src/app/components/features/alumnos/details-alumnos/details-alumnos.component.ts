@@ -29,7 +29,9 @@ export class DetailsAlumnosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this._activatedRoute.paramMap.subscribe(params => {
       this.id = +params.get('id')!;
-      this.alumno = this._alumnosService.getAlumno(this.id);
+      this._alumnosService.getAlumno(this.id).subscribe((alumno: Alumno) => {
+        this.alumno = alumno;
+      });
       this.cursosAlumno = this._cursosService.getCursosAlumno(this.alumno);
     });
   }

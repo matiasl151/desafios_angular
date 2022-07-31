@@ -50,7 +50,9 @@ export class EditInscripcionesComponent implements OnInit, OnDestroy {
     });
 
     this.cursos = this._cursosService.getCursos();
-    this.alumnos = this._alumnosService.getAlumnos();
+    this._alumnosService.getAlumnos().subscribe((alumnos: Alumno[]) => {
+      this.alumnos = alumnos;
+    });
   }
 
   editInscripcion() {
