@@ -14,6 +14,7 @@ export class EditCursosComponent implements OnInit {
   public formularioEdit: FormGroup;
   subscription!: Subscription;
   curso!: Curso;
+  id: number = 0;
   constructor(
     private fb: FormBuilder,
     private _activatedRoute: ActivatedRoute,
@@ -27,7 +28,10 @@ export class EditCursosComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscription = this._activatedRoute.paramMap.subscribe(params => {
-      this.curso = this._cursosService.getCurso(+params.get('id')!);
+      this.id = Number(params.get('id'));
+    });
+    this._cursosService.getCurso(this.id).subscribe((curso: Curso) => {
+      this.curso = curso;
       this.formularioEdit.setValue({
         name: this.curso.name,
         description: this.curso.description,
@@ -37,6 +41,10 @@ export class EditCursosComponent implements OnInit {
 
   editCurso() {
     const curso = this.formularioEdit.value as Curso;
-    this._cursosService.updateCurso(this.curso.id, curso);
+    this._cursosService.updateCurso(this.curso.id, curso).subscribe(() => {
+      this._cursosService.getCurso(this.id).subscribe((curso: Curso) => {
+        this.curso = curso;
+      });
+    });
   }
 }

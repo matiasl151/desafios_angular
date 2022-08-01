@@ -25,13 +25,14 @@ export class AddCursosComponent implements OnInit {
 
   addCurso() {
     const curso: Curso = {
-      id: this._cursosService.cursos.length + 1,
+      id: this._cursosService.getLastId() + 1,
       name: this.formularioAdd.value.name,
       description: this.formularioAdd.value.description,
       alumnos: [],
     };
 
-    this._cursosService.addCurso(curso);
-    this.formularioAdd.reset();
+    this._cursosService.addCurso(curso).subscribe(() => {
+      this.formularioAdd.reset();
+    });
   }
 }

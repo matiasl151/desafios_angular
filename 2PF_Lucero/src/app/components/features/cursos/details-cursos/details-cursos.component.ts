@@ -24,7 +24,16 @@ export class DetailsCursosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this._activatedRoute.paramMap.subscribe(params => {
       this.id = +params.get('id')!;
-      this.curso = this._cursosService.getCurso(this.id);
+    });
+    this._cursosService.getCurso(this.id).subscribe(curso => {
+      this.curso = curso;
+    });
+    this._inscripcionesService.getInscripciones().subscribe(inscripciones => {
+      inscripciones.forEach(inscripcion => {
+        if (inscripcion.curso.id === this.id) {
+          this.curso.alumnos.push(inscripcion.alumno);
+        }
+      });
     });
   }
 
@@ -33,7 +42,7 @@ export class DetailsCursosComponent implements OnInit, OnDestroy {
   }
 
   borrarAlumno(id: number) {
-    this._cursosService.deleteAlumnoFromCurso(this.curso, id);
-    this._inscripcionesService.deleteInscripcionesByCurso(this.curso.id);
+    this._inscripcionesService.deleteInscripcionByAlumno(id);
+    this.curso.alumnos = this.curso.alumnos.filter(alumno => alumno.id !== id);
   }
 }

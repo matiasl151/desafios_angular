@@ -1,97 +1,105 @@
 import { Injectable } from '@angular/core';
-import { AlumnosService } from '../alumnos/alumnos.service';
-import { CursosService } from '../cursos/cursos.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Inscripcion } from '../../interfaces/inscripcion.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InscripcionesService {
-  inscripciones: Inscripcion[] = [];
+  constructor(private http: HttpClient) {}
 
-  constructor(
-    private _alumnosService: AlumnosService,
-    private _cursosService: CursosService
-  ) {}
-
-  getInscripciones(): Inscripcion[] {
-    return this.inscripciones;
+  getInscripciones(): Observable<Inscripcion[]> {
+    return this.http.get<Inscripcion[]>('/api/inscripciones');
   }
 
-  getInscripcion(id: number) {
-    let inscripcionEncontrada = this.inscripciones.find(
-      inscripcion => inscripcion.id === id
-    );
-    if (inscripcionEncontrada) {
-      return inscripcionEncontrada;
-    } else {
-      return {} as Inscripcion;
+  getInscripcion(id: number): Observable<Inscripcion> {
+    return this.http.get<Inscripcion>(`/api/inscripciones/${id}`);
+  }
+
+  addInscripcion(inscripcion: Inscripcion): Observable<any> {
+    return this.http.post('/api/inscripciones', inscripcion);
+  }
+
+  updateInscripcion(id: number, inscripcion: Inscripcion): Observable<any> {
+    return this.http.put(`/api/inscripciones/${id}`, inscripcion);
+  }
+
+  deleteInscripcion(id: number): Observable<any> {
+    return this.http.delete(`/api/inscripciones/${id}`);
+  }
+
+  // Son necesarias?
+  deleteInscripcionesByAlumno(alumnoId: number): Observable<any> {
+    let inscripcionesEncontradas!: Inscripcion[];
+    this.getInscripciones().subscribe(inscripcionesDB => {
+      inscripcionesEncontradas = inscripcionesDB;
+    });
+    if (inscripcionesEncontradas) {
+      inscripcionesEncontradas.forEach(inscripcion => {
+        if (inscripcion.alumno.id === alumnoId) {
+          this.deleteInscripcion(inscripcion.id).subscribe(inscripcionesDB => {
+            console.log(inscripcionesDB);
+          });
+        }
+      });
     }
+    return new Observable();
   }
 
-  addInscripcion(inscripcion: Inscripcion): void {
-    // Agregar inscripcion, agregar alumno al curso
-    // Validar que el alumno no esté inscripto en el curso
-    const inscripcionesByAlumnoAndCurso = this.getInscripcionesByAlumnoAndCurso(
-      inscripcion.alumno.id,
-      inscripcion.curso.id
-    );
-    if (inscripcionesByAlumnoAndCurso.length === 0) {
-      this.inscripciones.push(inscripcion);
-      this._cursosService.addAlumno(inscripcion.curso.id, inscripcion.alumno);
-    } else {
-      console.error('El alumno ya está inscripto en el curso');
+  deleteInscripcionesByCurso(cursoId: number): Observable<any> {
+    let inscripcionesEncontradas!: Inscripcion[];
+    this.getInscripciones().subscribe(inscripcionesDB => {
+      inscripcionesEncontradas = inscripcionesDB;
+    });
+    if (inscripcionesEncontradas) {
+      inscripcionesEncontradas.forEach(inscripcion => {
+        if (inscripcion.curso.id === cursoId) {
+          this.deleteInscripcion(inscripcion.id);
+        }
+      });
     }
+    return new Observable();
+  }
+  //
+
+  deleteInscripcionByAlumno(alumnoId: number) {
+    let idInscripcion!: number;
+    this.getInscripciones().subscribe(inscripcionesDB => {
+      inscripcionesDB.forEach(inscripcion => {
+        if (inscripcion.alumno.id === alumnoId) {
+          idInscripcion = inscripcion.id;
+          this.deleteInscripcion(idInscripcion).subscribe(inscripcionesDB => {
+            console.log(inscripcionesDB);
+          });
+        } else {
+          console.log('No se encontro inscripcion');
+        }
+      });
+    });
   }
 
-  updateInscripcion(id: number, inscripcion: Inscripcion): void {
-    let inscripcionEncontrada = this.getInscripcion(id);
-    if (inscripcionEncontrada) {
-      if (inscripcion.alumno) {
-        inscripcionEncontrada.alumno = inscripcion.alumno;
-      }
-      if (inscripcion.curso) {
-        inscripcionEncontrada.curso = inscripcion.curso;
-      }
-    }
+  deleteInscripcionByCurso(cursoId: number) {
+    let idInscripcion!: number;
+    this.getInscripciones().subscribe(inscripcionesDB => {
+      inscripcionesDB.forEach(inscripcion => {
+        if (inscripcion.curso.id === cursoId) {
+          idInscripcion = inscripcion.id;
+          this.deleteInscripcion(idInscripcion).subscribe(inscripcionesDB => {
+            console.log(inscripcionesDB);
+          });
+        } else {
+          console.log('No se encontro inscripcion');
+        }
+      });
+    });
   }
 
-  deleteInscripcion(id: number): void {
-    // Eliminar inscripcion, eliminar alumno del curso
-    let inscripcionEncontrada = this.inscripciones.find(
-      inscripcion => inscripcion.id === id
-    );
-    if (inscripcionEncontrada) {
-      const index = this.inscripciones.findIndex(
-        inscripcionDB => inscripcionDB.id === id
-      );
-      this._cursosService.deleteAlumnoFromCurso(
-        inscripcionEncontrada.curso,
-        inscripcionEncontrada.alumno.id
-      );
-      this.inscripciones.splice(index, 1);
-    }
-  }
-
-  deleteInscripcionesByAlumno(alumnoId: number): void {
-    this.inscripciones = this.inscripciones.filter(
-      inscripcion => inscripcion.alumno.id !== alumnoId
-    );
-  }
-
-  deleteInscripcionesByCurso(cursoId: number): void {
-    this.inscripciones = this.inscripciones.filter(
-      inscripcion => inscripcion.curso.id !== cursoId
-    );
-  }
-
-  getInscripcionesByAlumnoAndCurso(
-    alumnoId: number,
-    cursoId: number
-  ): Inscripcion[] {
-    return this.inscripciones.filter(
-      inscripcion =>
-        inscripcion.alumno.id === alumnoId && inscripcion.curso.id === cursoId
-    );
+  getLastId(): number {
+    let nextId = 0;
+    this.getInscripciones().subscribe(inscripcionesDB => {
+      nextId = inscripcionesDB[inscripcionesDB.length - 1].id;
+    });
+    return nextId;
   }
 }

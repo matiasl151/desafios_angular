@@ -1,11 +1,18 @@
 {
   "alumnos": [
     {
-      "id": 1,
       "name": "Juan",
       "lastName": "Perez",
-      "age": 20,
-      "email": "juan@example.com"
+      "age": "21",
+      "email": "juan@example.com",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Pedro",
+      "lastName": "Ramaldo",
+      "age": 21,
+      "email": "pedro@example.com"
     },
     {
       "id": 3,
@@ -62,6 +69,13 @@
       "lastName": "Roberts",
       "age": "26",
       "email": "roberto@example.com"
+    },
+    {
+      "id": 11,
+      "name": "Javier",
+      "lastName": "Peña",
+      "age": "26",
+      "email": "javier@example.com"
     }
   ],
   "cursos": [
@@ -100,12 +114,24 @@
       "name": "HTML",
       "description": "Curso de HTML",
       "alumnos": []
-    },
+    }
+  ],
+  "inscripciones": [
     {
-      "id": 7,
-      "name": "CSS",
-      "description": "Curso de CSS",
-      "alumnos": []
+      "id": 1,
+      "curso": {
+        "id": 1,
+        "name": "Angular",
+        "description": "Curso de Angular",
+        "alumnos": []
+      },
+      "alumno": {
+        "name": "Juan",
+        "lastName": "Perez",
+        "age": "21",
+        "email": "juan@example.com",
+        "id": 1
+      }
     }
   ]
 }

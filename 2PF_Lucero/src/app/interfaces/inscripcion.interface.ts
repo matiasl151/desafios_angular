@@ -5,5 +5,4 @@ export interface Inscripcion {
   id: number;
   alumno: Alumno;
   curso: Curso;
-  fecha: Date;
 }

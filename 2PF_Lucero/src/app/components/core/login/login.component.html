@@ -1,16 +1,30 @@
 <div class="body">
   <div class="login">
-    <h1 class="h3 mb-3 fw-normal">Login</h1>
-    <mat-form-field class="ancho" appearance="fill">
-      <mat-label>Username</mat-label>
-      <input type="text" matInput autocomplete="off" />
-    </mat-form-field>
-    <mat-form-field class="ancho" appearance="fill">
-      <mat-label>Password</mat-label>
-      <input type="password" matInput autocomplete="off" />
-    </mat-form-field>
-    <button mat-raised-button class="ancho" color="primary" routerLink="/main">
-      Login
-    </button>
+    <form [formGroup]="formularioLogin">
+      <h1 class="h3 mb-3 fw-normal">Login</h1>
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Username</mat-label>
+        <input
+          type="text"
+          matInput
+          autocomplete="off"
+          formControlName="username" />
+      </mat-form-field>
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          autocomplete="off"
+          formControlName="password" />
+      </mat-form-field>
+      <button
+        mat-raised-button
+        class="ancho"
+        color="primary"
+        routerLink="/main">
+        Login
+      </button>
+    </form>
   </div>
 </div>

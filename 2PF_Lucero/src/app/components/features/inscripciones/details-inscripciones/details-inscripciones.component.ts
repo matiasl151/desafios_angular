@@ -22,8 +22,12 @@ export class DetailsInscripcionesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this._activatedRoute.paramMap.subscribe(params => {
       this.id = +params.get('id')!;
-      this.inscripcion = this._inscripcionesService.getInscripcion(this.id);
     });
+    this._inscripcionesService
+      .getInscripcion(this.id)
+      .subscribe((inscripcion: Inscripcion) => {
+        this.inscripcion = inscripcion;
+      });
   }
 
   ngOnDestroy(): void {

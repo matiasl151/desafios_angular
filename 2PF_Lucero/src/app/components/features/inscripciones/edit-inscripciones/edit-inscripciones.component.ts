@@ -19,6 +19,7 @@ import { Alumno } from 'src/app/interfaces/alumno.interface';
 export class EditInscripcionesComponent implements OnInit, OnDestroy {
   cursos: Curso[] = [];
   alumnos: Alumno[] = [];
+  id: number = 0;
   inscripcion!: Inscripcion;
   subscription!: Subscription;
   formularioEdit: FormGroup;
@@ -32,37 +33,50 @@ export class EditInscripcionesComponent implements OnInit, OnDestroy {
     this.formularioEdit = this.fb.group({
       curso: ['', Validators.required],
       alumno: ['', Validators.required],
-      fecha: [new Date(), Validators.required],
     });
   }
 
   ngOnInit(): void {
     this.subscription = this._activatedRoute.paramMap.subscribe(params => {
-      this.inscripcion = this._inscripcionesService.getInscripcion(
-        +params.get('id')!
-      );
-      this.formularioEdit.setValue({
-        curso: this.inscripcion.curso,
-        alumno: this.inscripcion.alumno,
-        // TODO: arreglar asignacion de fecha
-        fecha: new Date(this.inscripcion.fecha),
-      });
+      this.id = Number(params.get('id'));
     });
+    this._inscripcionesService
+      .getInscripcion(this.id)
+      .subscribe((inscripcion: Inscripcion) => {
+        this.inscripcion = inscripcion;
+        this.formularioEdit.setValue({
+          curso: this.inscripcion.curso.name,
+          alumno:
+            this.inscripcion.alumno.name +
+            ' ' +
+            this.inscripcion.alumno.lastName,
+        });
+      });
 
-    this.cursos = this._cursosService.getCursos();
+    this._cursosService.getCursos().subscribe((cursos: Curso[]) => {
+      this.cursos = cursos;
+    });
     this._alumnosService.getAlumnos().subscribe((alumnos: Alumno[]) => {
       this.alumnos = alumnos;
     });
   }
 
   editInscripcion() {
-    let inscripcion = this.formularioEdit.value as Inscripcion;
-    inscripcion.fecha = new Date(this.formularioEdit.value.fecha);
-
-    this._inscripcionesService.updateInscripcion(
-      this.inscripcion.id,
-      inscripcion
-    );
+    let inscripcion: Inscripcion = {
+      id: this.inscripcion.id,
+      curso: this.formularioEdit.value.curso,
+      alumno: this.formularioEdit.value.alumno,
+    };
+    this._inscripcionesService
+      .updateInscripcion(inscripcion.id, inscripcion)
+      .subscribe(() => {
+        console.log('Inscripcion editada');
+        this._inscripcionesService
+          .getInscripcion(this.id)
+          .subscribe((inscripcion: Inscripcion) => {
+            this.inscripcion = inscripcion;
+          });
+      });
   }
 
   ngOnDestroy(): void {

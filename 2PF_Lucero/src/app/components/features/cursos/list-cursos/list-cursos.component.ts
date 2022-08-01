@@ -18,11 +18,17 @@ export class ListCursosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cursos = this._cursosService.getCursos();
+    this._cursosService.getCursos().subscribe((cursos: Curso[]) => {
+      this.cursos = cursos;
+    });
   }
 
   onDelete(id: number) {
-    this._cursosService.deleteCurso(id);
+    this._cursosService.deleteCurso(id).subscribe(() => {
+      this._cursosService.getCursos().subscribe((cursos: Curso[]) => {
+        this.cursos = cursos;
+      });
+    });
     this._inscripcionesService.deleteInscripcionesByCurso(id);
   }
 }

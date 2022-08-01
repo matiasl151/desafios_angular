@@ -32,13 +32,19 @@ export class DetailsAlumnosComponent implements OnInit, OnDestroy {
       this._alumnosService.getAlumno(this.id).subscribe((alumno: Alumno) => {
         this.alumno = alumno;
       });
-      this.cursosAlumno = this._cursosService.getCursosAlumno(this.alumno);
+    });
+    this._inscripcionesService.getInscripciones().subscribe(inscripciones => {
+      inscripciones.forEach(inscripcion => {
+        if (inscripcion.alumno.id === this.id) {
+          this.cursosAlumno.push(inscripcion.curso);
+        }
+      });
     });
   }
 
-  borrarCurso(curso: Curso): void {
-    this._cursosService.deleteAlumnoFromCurso(curso, this.alumno!.id);
-    this._inscripcionesService.deleteInscripcionesByAlumno(this.alumno.id);
+  borrarCurso(): void {
+    this._inscripcionesService.deleteInscripcionByCurso(this.id);
+    this.cursosAlumno = this.cursosAlumno.filter(curso => curso.id !== this.id);
   }
 
   ngOnDestroy(): void {

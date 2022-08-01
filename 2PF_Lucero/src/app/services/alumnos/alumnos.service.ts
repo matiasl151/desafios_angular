@@ -22,27 +22,7 @@ export class AlumnosService {
   }
 
   updateAlumno(id: number, alumno: Alumno): Observable<any> {
-    let alumnoEncontrado!: Alumno;
-    this.getAlumno(id).subscribe(a => {
-      alumnoEncontrado = a;
-    });
-    if (alumno.name) {
-      alumnoEncontrado.name = alumno.name;
-    }
-
-    if (alumno.lastName) {
-      alumnoEncontrado.lastName = alumno.lastName;
-    }
-
-    if (alumno.age) {
-      alumnoEncontrado.age = alumno.age;
-    }
-
-    if (alumno.email) {
-      alumnoEncontrado.email = alumno.email;
-    }
-
-    return this.http.put(`/api/alumnos/${id}`, alumnoEncontrado);
+    return this.http.put(`/api/alumnos/${id}`, alumno);
   }
 
   deleteAlumno(id: number): Observable<any> {

@@ -30,7 +30,9 @@ export class AddInscripcionesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cursos = this._cursosService.getCursos();
+    this._cursosService.getCursos().subscribe((cursos: Curso[]) => {
+      this.cursos = cursos;
+    });
     this._alumnosService.getAlumnos().subscribe((alumnos: Alumno[]) => {
       this.alumnos = alumnos;
     });
@@ -39,14 +41,12 @@ export class AddInscripcionesComponent implements OnInit {
 
   addInscripcion() {
     const inscripcion: Inscripcion = {
-      id: this._inscripcionesService.inscripciones.length + 1,
+      id: this._inscripcionesService.getLastId(),
       curso: this.formularioAdd.value.curso,
       alumno: this.formularioAdd.value.alumno,
-      fecha: new Date(),
     };
-    console.log(inscripcion);
-
-    this._inscripcionesService.addInscripcion(inscripcion);
-    this.formularioAdd.reset();
+    this._inscripcionesService.addInscripcion(inscripcion).subscribe(() => {
+      this.formularioAdd.reset();
+    });
   }
 }

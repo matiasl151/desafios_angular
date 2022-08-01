@@ -12,10 +12,21 @@ export class ListInscripcionesComponent implements OnInit {
   constructor(private _inscripcionesService: InscripcionesService) {}
 
   ngOnInit(): void {
-    this.inscripciones = this._inscripcionesService.getInscripciones();
+    this._inscripcionesService
+      .getInscripciones()
+      .subscribe((inscripciones: Inscripcion[]) => {
+        this.inscripciones = inscripciones;
+      });
   }
 
   onDelete(id: number) {
-    this._inscripcionesService.deleteInscripcion(id);
+    this._inscripcionesService.deleteInscripcion(id).subscribe(() => {
+      console.log('Inscripcion eliminada');
+      this._inscripcionesService
+        .getInscripciones()
+        .subscribe((inscripciones: Inscripcion[]) => {
+          this.inscripciones = inscripciones;
+        });
+    });
   }
 }
