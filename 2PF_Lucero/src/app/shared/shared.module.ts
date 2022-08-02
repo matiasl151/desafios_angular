@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -34,6 +35,7 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     MatCardModule,
     MatSelectModule,
+    MatSnackBarModule,
   ],
   exports: [
     LayoutModule,
@@ -50,6 +52,7 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     MatCardModule,
     MatSelectModule,
+    MatSnackBarModule,
   ],
 })
 export class SharedModule {}
