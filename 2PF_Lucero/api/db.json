@@ -3,7 +3,7 @@
     {
       "name": "Juan",
       "lastName": "Perez",
-      "age": "21",
+      "age": "22",
       "email": "juan@example.com",
       "id": 1
     },
@@ -131,6 +131,22 @@
         "age": "21",
         "email": "juan@example.com",
         "id": 1
+      }
+    },
+    {
+      "id": 2,
+      "curso": {
+        "id": 4,
+        "name": "JavaScript",
+        "description": "Curso de JavaScript",
+        "alumnos": []
+      },
+      "alumno": {
+        "id": 10,
+        "name": "Roberto",
+        "lastName": "Roberts",
+        "age": "26",
+        "email": "roberto@example.com"
       }
     }
   ]
