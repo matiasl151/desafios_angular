@@ -11,12 +11,24 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+<<<<<<< HEAD
+=======
+  token = localStorage.getItem('token');
+  user = '';
+>>>>>>> c63f7ed5c00c8766d9f049bc5e2bb5141cad901e
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
+  ngOnInit() {
+    if (this.token == '123456789') {
+      this.user = 'admin';
+    } else {
+      this.user = 'user';
+    }
+  }
 
   compName: string = '';
   username: string = '';
