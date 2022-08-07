@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { InscripcionesService } from 'src/app/services/inscripciones/inscripciones.service';
 import { Inscripcion } from 'src/app/interfaces/inscripcion.interface';
 
+import { AuthService } from 'src/app/services/auth/auth.service';
+
 @Component({
   selector: 'app-list-inscripciones',
   templateUrl: './list-inscripciones.component.html',
@@ -9,7 +11,11 @@ import { Inscripcion } from 'src/app/interfaces/inscripcion.interface';
 })
 export class ListInscripcionesComponent implements OnInit {
   inscripciones: Inscripcion[] = [];
-  constructor(private _inscripcionesService: InscripcionesService) {}
+  rolActivo: string = '';
+  constructor(
+    private _inscripcionesService: InscripcionesService,
+    private _authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this._inscripcionesService
@@ -17,6 +23,7 @@ export class ListInscripcionesComponent implements OnInit {
       .subscribe((inscripciones: Inscripcion[]) => {
         this.inscripciones = inscripciones;
       });
+    this.rolActivo = this._authService.getRole();
   }
 
   onDelete(id: number) {

@@ -3,7 +3,7 @@ import { Alumno } from 'src/app/interfaces/alumno.interface';
 import { AlumnosService } from 'src/app/services/alumnos/alumnos.service';
 
 import { InscripcionesService } from 'src/app/services/inscripciones/inscripciones.service';
-import { RestService } from 'src/app/services/rest-service/rest-service.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-list-alumnos',
@@ -12,21 +12,19 @@ import { RestService } from 'src/app/services/rest-service/rest-service.service'
 })
 export class ListAlumnosComponent implements OnInit {
   listAlumnos: Alumno[] = [];
-  listAlumnosRest: any = [];
+  rolActivo: string = '';
 
   constructor(
     private _alumnosService: AlumnosService,
     private _inscripcionesService: InscripcionesService,
-    private _restService: RestService
+    private _authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this._alumnosService.getAlumnos().subscribe((alumnos: Alumno[]) => {
       this.listAlumnos = alumnos;
     });
-    this._restService.getAlumnos().subscribe(data => {
-      this.listAlumnosRest = data;
-    });
+    this.rolActivo = this._authService.getRole();
   }
 
   deleteAlumno(id: number) {

@@ -7,6 +7,8 @@ import { DetailsAlumnosComponent } from './details-alumnos/details-alumnos.compo
 import { EditAlumnosComponent } from './edit-alumnos/edit-alumnos.component';
 import { ListAlumnosComponent } from './list-alumnos/list-alumnos.component';
 
+import { AuthGuard } from 'src/app/guards/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -14,8 +16,16 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'list-alumnos', pathMatch: 'full' },
       { path: 'list-alumnos', component: ListAlumnosComponent },
-      { path: 'add-alumno', component: AddAlumnosComponent },
-      { path: 'edit-alumno/:id', component: EditAlumnosComponent },
+      {
+        path: 'add-alumno',
+        component: AddAlumnosComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'edit-alumno/:id',
+        component: EditAlumnosComponent,
+        canActivate: [AuthGuard],
+      },
       { path: 'details-alumno/:id', component: DetailsAlumnosComponent },
     ],
   },

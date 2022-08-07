@@ -14,15 +14,17 @@
         <td>{{ curso.name }}</td>
         <td>{{ curso.description }}</td>
         <td>
-          <button
-            mat-button
-            color="primary"
-            [routerLink]="['/main/cursos/edit-curso', curso.id]">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-button color="primary" (click)="onDelete(curso.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
+          <span *ngIf="this.rolActivo === 'admin'">
+            <button
+              mat-button
+              color="primary"
+              [routerLink]="['/main/cursos/edit-curso', curso.id]">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="primary" (click)="onDelete(curso.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </span>
           <button
             mat-button
             color="primary"
@@ -34,7 +36,9 @@
     </tbody>
   </table>
   <br />
-  <button mat-raised-button color="primary" routerLink="/cursos/add-curso">
-    Agregar Curso
-  </button>
+  <span *ngIf="this.rolActivo === 'admin'">
+    <button mat-raised-button color="primary" routerLink="/cursos/add-curso">
+      Agregar Curso
+    </button>
+  </span>
 </div>

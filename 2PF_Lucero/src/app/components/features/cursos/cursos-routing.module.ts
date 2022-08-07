@@ -6,6 +6,8 @@ import { DetailsCursosComponent } from './details-cursos/details-cursos.componen
 import { EditCursosComponent } from './edit-cursos/edit-cursos.component';
 import { ListCursosComponent } from './list-cursos/list-cursos.component';
 
+import { AuthGuard } from 'src/app/guards/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -13,8 +15,16 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'list-curso', pathMatch: 'full' },
       { path: 'list-curso', component: ListCursosComponent },
-      { path: 'add-curso', component: AddCursosComponent },
-      { path: 'edit-curso/:id', component: EditCursosComponent },
+      {
+        path: 'add-curso',
+        component: AddCursosComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'edit-curso/:id',
+        component: EditCursosComponent,
+        canActivate: [AuthGuard],
+      },
       { path: 'details-curso/:id', component: DetailsCursosComponent },
     ],
   },

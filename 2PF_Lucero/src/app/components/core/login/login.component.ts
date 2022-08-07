@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/users.interface';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private _snackBar: MatSnackBar
+    private authService: AuthService
   ) {
     this.formularioLogin = this.fb.group({
       username: ['', Validators.required],
@@ -23,28 +24,22 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem('token')) {
-      this.router.navigateByUrl('/main');
+    if (localStorage.getItem('user')) {
+      this.router.navigate(['/main']);
     }
   }
 
   login() {
-    if (this.formularioLogin.valid) {
-      let username = this.formularioLogin.get('username')?.value;
-      let password = this.formularioLogin.get('password')?.value;
-
-      if (username == 'admin' && password == 'admin') {
-        localStorage.setItem('token', '123456789');
-        this.router.navigateByUrl('/main');
-        this._snackBar.open('Login successful', 'Close', {
-          duration: 2000,
-        });
-      } else {
-        // alert('Usuario o contraseña incorrectos');
-        this._snackBar.open('Usuario o contraseña incorrectos', 'Cerrar', {
-          duration: 2000,
-        });
-      }
-    }
+    const user = {
+      email: this.formularioLogin.value.username + '@example.com',
+      password: this.formularioLogin.value.password,
+      username: this.formularioLogin.value.username,
+      role: '' as User['role'],
+    };
+    this.authService.login(user).subscribe(res => {
+      localStorage.setItem('user', JSON.stringify(res));
+      this.router.navigate(['/main']);
+    });
+    this.formularioLogin.reset();
   }
 }

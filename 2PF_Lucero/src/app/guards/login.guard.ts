@@ -7,12 +7,13 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private _snackbar: MatSnackBar) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -26,12 +27,14 @@ export class LoginGuard implements CanActivate {
   }
 
   loggedIn() {
-    let token = localStorage.getItem('token');
-
-    if (token == '123456789') {
+    // Si el usuario está logueado, devuelve true
+    if (localStorage.getItem('user')) {
       return true;
     } else {
       this.router.navigate(['/login']);
+      this._snackbar.open('You must be logged in to access this page', '', {
+        duration: 3000,
+      });
       return false;
     }
   }

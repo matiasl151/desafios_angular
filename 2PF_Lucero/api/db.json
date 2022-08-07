@@ -133,5 +133,21 @@
         "id": 1
       }
     }
+  ],
+  "users": [
+    {
+      "email": "admin@example.com",
+      "password": "$2a$10$9jriRLMF0O1eVQtIvXK2vePRFmDtzU7J4pIgUkVlaeUNhKa0UZkwy",
+      "username": "admin",
+      "role": "admin",
+      "id": 1
+    },
+    {
+      "email": "user@example.com",
+      "password": "$2a$10$.2CK6Y1VKNsIPKwagEyHUuYEQdPYaTguZRGd27w/mPan/YchT6y3K",
+      "username": "user",
+      "role": "user",
+      "id": 2
+    }
   ]
 }
