@@ -164,6 +164,20 @@
       "username": "user",
       "role": "user",
       "id": 2
+    },
+    {
+      "username": "roberto",
+      "password": "$2a$10$sUIiF4ZPWReIKFFju/K0yORJ4.4cqH7dZvieuNBR9E9EZKjJQw7eu",
+      "email": "roberto15@example.com",
+      "role": "admin",
+      "id": 3
+    },
+    {
+      "username": "matias",
+      "password": "$2a$10$Rw9s6Cuh6T0xsCPriNR9P.EBL9FN8tPiWH9syd2gXFN0W4j81cMpm",
+      "email": "matias@example.com",
+      "role": "admin",
+      "id": 4
     }
   ]
 }

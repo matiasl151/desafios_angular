@@ -6,17 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alumnos.component.scss'],
 })
 export class AlumnosComponent implements OnInit {
-  public option: string = 'lista';
-  public option_form: string = '';
-
   constructor() {}
 
   ngOnInit(): void {}
-
-  setOptionForm(option: string) {
-    this.option_form = option;
-  }
-  setOption(option: string) {
-    this.option = option;
-  }
 }

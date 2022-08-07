@@ -25,6 +25,7 @@ export class AddAlumnosComponent implements OnInit {
 
   ngOnInit(): void {
     this.formularioAdd.reset();
+    console.log(localStorage.getItem('user'));
   }
 
   addAlumno() {

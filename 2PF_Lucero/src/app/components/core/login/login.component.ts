@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
       password: this.formularioLogin.value.password,
       username: this.formularioLogin.value.username,
       role: '' as User['role'],
+      id: 0 as User['id'],
     };
     this.authService.login(user).subscribe(res => {
       localStorage.setItem('user', JSON.stringify(res));

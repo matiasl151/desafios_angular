@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  baseURL: 'https://62e4576fc6b56b4511854e46.mockapi.io',
 };
 
 /*

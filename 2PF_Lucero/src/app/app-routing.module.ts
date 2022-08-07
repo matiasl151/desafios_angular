@@ -34,6 +34,13 @@ const routes: Routes = [
             './components/features/inscripciones/inscripciones.module'
           ).then(m => m.InscripcionesModule),
       },
+      {
+        path: 'usuarios',
+        loadChildren: () =>
+          import('./components/features/usuarios/usuarios.module').then(
+            m => m.UsuariosModule
+          ),
+      },
     ],
     canActivate: [LoginGuard],
   },

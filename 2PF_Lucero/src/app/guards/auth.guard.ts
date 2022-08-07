@@ -31,7 +31,8 @@ export class AuthGuard implements CanActivate {
     let user = localStorage.getItem('user');
     if (user != null) {
       let userjson = JSON.parse(user);
-      if (userjson.role == 'admin') {
+
+      if (userjson.user.role === 'admin') {
         return true;
       } else {
         this._snackbar.open('No tienes permisos para acceder a esta ruta', '', {

@@ -1,0 +1,52 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Rol</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.id }}</td>
+        <td>{{ usuario.username }}</td>
+        <td>{{ usuario.email }}</td>
+        <td>{{ usuario.role }}</td>
+        <td>
+          <span *ngIf="this.rolActivo === 'admin'">
+            <button
+              mat-button
+              color="primary"
+              [routerLink]="['/main/usuarios/edit-usuario', usuario.id]">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-button
+              color="primary"
+              (click)="deleteUsuario(usuario.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </span>
+          <button
+            mat-button
+            color="primary"
+            [routerLink]="['/main/usuarios/details-usuario', usuario.id]">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <span *ngIf="this.rolActivo === 'admin'">
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/main/usuarios/add-usuario">
+      Agregar Alumno
+    </button>
+  </span>
+</div>
