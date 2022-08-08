@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService
   ) {
     this.formularioLogin = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
@@ -30,13 +30,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const user = {
-      email: this.formularioLogin.value.username + '@example.com',
-      password: this.formularioLogin.value.password,
-      username: this.formularioLogin.value.username,
-      role: '' as User['role'],
-      id: 0 as User['id'],
-    };
+    // const user = {
+    //   email: this.formularioLogin.value.username + '@example.com',
+    //   password: this.formularioLogin.value.password,
+    //   username: this.formularioLogin.value.username,
+    //   role: '' as User['role'],
+    //   id: 0 as User['id'],
+    // };
+    const user = this.formularioLogin.value as User;
+
     this.authService.login(user).subscribe(res => {
       localStorage.setItem('user', JSON.stringify(res));
       this.router.navigate(['/main']);

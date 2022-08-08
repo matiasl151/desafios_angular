@@ -3,12 +3,12 @@
     <form [formGroup]="formularioLogin" (ngSubmit)="login()">
       <h1 class="h3 mb-3 fw-normal">Login</h1>
       <mat-form-field class="ancho" appearance="fill">
-        <mat-label>Username</mat-label>
+        <mat-label>Email</mat-label>
         <input
           type="text"
           matInput
           autocomplete="off"
-          formControlName="username" />
+          formControlName="email" />
       </mat-form-field>
       <mat-form-field class="ancho" appearance="fill">
         <mat-label>Password</mat-label>
